@@ -24,6 +24,7 @@
   }
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
+  /* bazowy rozmiar fontu 1:1 z Carrd (responsywny, w pt) */
   html{ font-size:13pt; }
   @media (max-width:1680px){ html{ font-size:9pt; } }
   @media (max-width:980px){ html{ font-size:8pt; } }
@@ -41,15 +42,12 @@
     position:relative;
     max-width:38rem;
     margin:0 auto;
-    padding:clamp(2rem,6vw,4rem) 1.1rem 3.5rem;
+    padding:clamp(1.6rem,5vw,3.2rem) 1.1rem 3rem;
   }
   @media (max-width:480px){ .wrap{ padding-left:0.85rem; padding-right:0.85rem; } }
 
-  h1.hey{
-    font-size:1.875em; font-weight:700; letter-spacing:0.05rem;
-    line-height:1.375; margin:0 0 1.75rem;
-  }
-  @media (max-width:480px){ h1.hey{ font-size:1.5em; } }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
   p{
     font-size:1em; font-weight:300; letter-spacing:0.025rem;
@@ -63,7 +61,6 @@
     line-height:1.625; margin:0 0 1.35rem;
   }
 
-  .spacer{ height:2.5rem; }
 
   .wrap a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
 
@@ -84,11 +81,19 @@
     clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
 
+  /* przelacznik motywu - zarowka */
+  .writing{ margin:2.2rem 0 2.6rem; }
+  .posts{ list-style:none; padding:0; margin:1rem 0 0; }
+  .posts li{ padding:0.6rem 0; border-bottom:1px solid #262a31; line-height:1.5; }
+  .posts li:last-child{ border-bottom:0; }
+  .posts a{ color:var(--ink); text-decoration:none; }
+  .posts a:hover{ color:var(--accent); }
   .foot{ margin-top:3rem; font-size:0.85rem; color:#6b7079; }
 </style>
 </head>
 
 <body>
+<!-- sprite z dokladnymi ikonami przeniesionymi 1:1 z Carrda -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
   <symbol id="ic-keybase" viewBox="0 0 40 40"><path d="M24.7,12.3c0.6,0.3,1.2,0.5,1.8,0.7c4.7,2.4,7.7,6.2,8.7,11.4c0.4,2,0.2,4.1-0.2,6.1c-0.2,1.2-0.6,2.4-1.2,3.6 c-0.1,0.2-0.2,0.3-0.4,0.3c-0.5,0-1,0-1.6,0c0.9-1.6,1.5-3.3,1.7-5.1c0.2-1.8,0.3-3.5-0.1-5.3c0,0-0.1,0.1-0.1,0.1 c-0.9,1.7-2.4,2.4-4.3,2.5c-0.8,0-1.6-0.1-2.3-0.3c-1.9-0.6-3.9-0.9-6-0.9c-3.5,0-6.7,1.1-9.5,3.1c-0.6,0.4-1.2,0.9-1.8,1.3 c0,0-0.1,0-0.2,0.1c0.5-1.5,1-3,1.4-4.5c0,0,0,0-0.1-0.1c0,0.1-0.1,0.1-0.1,0.2c-1,1-2,2.1-3,3.1c-0.1,0.1-0.2,0.3-0.1,0.4 c0.4,1.8,1.1,3.5,2.1,5c0,0.1,0.1,0.1,0.2,0.3c-0.6,0-1.3,0-1.9,0c-0.1,0-0.1-0.1-0.2-0.2c-0.7-1.1-1.2-2.4-1.6-3.7 c0-0.1,0-0.1-0.1-0.3c-0.6,0.6-1.1,1.2-1.7,1.8c0-0.1,0-0.2,0-0.2c0-1.9-0.1-3.9,0.1-5.8c0.4-4.1,2-7.6,5-10.4 c1.4-1.2,2.9-2.3,4.6-3c0.1,0,0.1-0.1,0.2-0.1c-0.6-1.1-0.7-2.4-0.6-3.7c-0.1,0-0.2,0-0.3,0c-0.5,0-0.9,0-1.4-0.1 c-1.3-0.1-2.1-1.2-2.1-2.5c0-0.7,0.1-1.4,0.1-2C10,3.1,11,2.2,12.2,2.3c0.8,0,1.5,0.1,2.3,0.1c0.6,0.1,1.1,0.4,1.5,0.9 c0.7-0.9,1.3-1.9,2-2.8c0.5,0.3,0.9,0.5,1.4,0.8c-0.1,0.3-0.2,0.5-0.3,0.8c-0.1,0.5-0.3,1-0.4,1.5c0,0.1,0,0.1,0,0.2 c0,0.4,0,0.4,0.4,0.4c2.7,0.2,4.8,1.4,5.7,3.8c0.5,1.3,0.5,2.7,0,4C24.7,12.1,24.7,12.2,24.7,12.3z M22.1,17.1 c-0.1,0.1-0.2,0.2-0.3,0.2c-0.4,0.3-0.8,0.6-1.1,0.9c-0.2,0.2-0.2,0.3-0.1,0.6c0.1,0.2,0.3,0.4,0.5,0.6c0.3,0.4,0.4,0.4,0.8,0.1 c0.4-0.3,0.9-0.7,1.3-1.1c0.1,0.1,0.1,0.2,0.2,0.3c0.1,0.1,0.1,0.2,0.2,0.2c0.2,0.2,0.4,0.2,0.6,0.1c0.2-0.1,0.2-0.4,0.1-0.6 c-0.1-0.2-0.2-0.3-0.4-0.5c-1.3-1.5-2.5-3.1-3.8-4.6c-0.2-0.2-0.4-0.3-0.6-0.1c-0.2,0.2-0.2,0.4,0,0.7c0.2,0.2,0.3,0.4,0.5,0.6 c0.3,0.4,0.6,0.8,1,1.2c-0.2,0.2-0.5,0.4-0.7,0.6c-0.2,0.2-0.2,0.4,0,0.6c0.2,0.2,0.3,0.2,0.6,0.1c0.2-0.2,0.4-0.4,0.7-0.5 C21.6,16.6,21.8,16.9,22.1,17.1z M11.4,6.6c0,0.3,0.2,0.5,0.8,0.6c0.5,0,1,0.1,1.5,0.1c0.2,0,0.2,0,0.3-0.2c0.2-0.5,0.4-0.9,0.6-1.4 c0.1-0.3,0.2-0.5,0.2-0.8c0-0.5-0.2-0.8-0.7-0.8c-0.6,0-1.2-0.1-1.8-0.1c-0.5,0-0.7,0.2-0.8,0.7C11.5,5.2,11.5,5.8,11.4,6.6z M17.5,30.7c0-0.8-0.6-1.3-1.4-1.3c-0.7,0-1.3,0.6-1.3,1.3c0,0.7,0.6,1.3,1.3,1.3C16.9,32,17.5,31.4,17.5,30.7z M25.9,30.7 c0-0.7-0.6-1.3-1.3-1.3c-0.8,0-1.4,0.6-1.3,1.3c0,0.7,0.6,1.3,1.3,1.3C25.3,32,25.9,31.4,25.9,30.7z M13.1,5c-0.1,0-0.3,0-0.4,0 c-0.1,0-0.2,0.1-0.2,0.1c0,0.3-0.1,0.6-0.1,0.9c0,0,0.1,0.1,0.1,0.1c0.3,0,0.6,0,0.9,0.1c0.1,0,0.2-0.1,0.2-0.2c0-0.3,0-0.5,0.1-0.8 c0-0.2,0-0.2-0.2-0.2C13.4,5,13.3,5,13.1,5C13.1,5,13.1,5,13.1,5z" /></symbol>
   <symbol id="ic-x" viewBox="0 0 40 40"><path d="M36,36l-12.4-18.3,11.6-13.7h-4l-9.4,11-7.5-11H4.2l12,17.7-12.2,14.3h4l9.9-11.7,7.9,11.7h10.2,0ZM13,6.6l18.2,26.9h-4L9,6.6h4Z" /></symbol>
@@ -100,25 +105,27 @@
 </svg>
 
 <main class="wrap">
-  <p>Hey, I'm <strong>Marcin</strong> — a software engineer who likes keeping things simple.</p>
+  <h1 class="sr-only">Marcin Brzozowski</h1>
 
-  <p>I care about building useful things, but even more about the people who end up using them. Technology is interesting, but the human side of it is what usually keeps me curious.</p>
+  <p>Hey, I'm <strong>Marcin</strong>.</p>
 
-  <p>I'm into psychology, technology, unusual ideas, and people who see things a little differently.</p>
+  <p>I'm a software engineer, but I'm curious about much more than software. How people think, what they need, why some things feel right, and why others don't.</p>
 
-  <p>I also travel quite a bit. Now and then you'll catch me in Warsaw, Berlin, Barcelona, Madrid, or London — if you do, I'm always up for a coffee or a beer.</p>
+  <p>I like psychology, travel, strange ideas, good products, and good conversations. If our paths cross, say hi.</p>
 
-  <p><strong>Working on something, or after a recommendation?</strong><br />
-  ➡ Reach me at <a href="mailto:marcin@brzozowski.dev">marcin[at]brzozowski.dev</a></p>
-
-  <p>➡ Curious about my work? <a href="/about">Check out my CV</a>.</p>
-
-  <p class="pgp"><strong>PGP: 0xE00C109A07093B12 (｡◕‿◕｡)</strong></p>
-
-  <div class="spacer"></div>
+  <section class="writing">
+    <h2 class="git">Things I've been writing</h2>
+    <ul class="posts">
+      <!-- BLOG-POST-LIST:START -->
+      <li><a href="https://medium.com/@marcin.brzozowski">My latest Medium posts will show up here.</a></li>
+      <!-- BLOG-POST-LIST:END -->
+    </ul>
+  </section>
 
   <h2 class="git">Get in touch</h2>
-  <p>If you want to know more about me, check out my social media.</p>
+  <p>Got a project, need a consultation, or looking for a travel companion? Reach me at <a href="mailto:marcin@brzozowski.dev">marcin[at]brzozowski.dev</a>, or <a href="/about">check out my CV</a>.</p>
+
+  <p class="pgp">PGP: <strong>0xE00C109A07093B12</strong> (｡◕‿◕｡)</p>
 
   <ul class="icons">
     <li><a href="https://keybase.io/brzozowski" aria-label="Keybase"><svg viewBox="0 0 40 40"><use href="#ic-keybase"></use></svg><span class="label">Keybase</span></a></li>
